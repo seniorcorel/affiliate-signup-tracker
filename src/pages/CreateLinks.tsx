@@ -10,13 +10,14 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { format } from "date-fns";
+import { format, addDays } from "date-fns";
 
 interface GeneratedLink {
   id: string;
   destinationUrl: string;
   shortUrl: string;
   createdAt: Date;
+  expiresAt: Date;
 }
 
 const PREDEFINED_URLS = [
@@ -24,10 +25,17 @@ const PREDEFINED_URLS = [
   { label: "flinbo.com/register", value: "https://flinbo.com/register" },
 ];
 
+const EXPIRATION_OPTIONS = [
+  { label: "7 days", value: "7" },
+  { label: "30 days", value: "30" },
+  { label: "90 days", value: "90" },
+];
+
 const CreateLinks = () => {
   const [generatedLinks, setGeneratedLinks] = useState<GeneratedLink[]>([]);
   const [customUrl, setCustomUrl] = useState("");
   const [selectedPredefined, setSelectedPredefined] = useState("");
+  const [expirationDays, setExpirationDays] = useState("30");
 
   const generateShortUrl = () => {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -46,17 +54,21 @@ const CreateLinks = () => {
       return;
     }
 
+    const createdAt = new Date();
+    const expiresAt = addDays(createdAt, parseInt(expirationDays));
+
     const newLink: GeneratedLink = {
       id: Math.random().toString(36).substr(2, 9),
       destinationUrl,
       shortUrl: generateShortUrl(),
-      createdAt: new Date(),
+      createdAt,
+      expiresAt,
     };
 
     setGeneratedLinks(prev => [newLink, ...prev]);
     toast.success("Link generated successfully!");
     
-    if (!selectedPredefined) {
+    if (selectedPredefined === "custom") {
       setCustomUrl("");
     }
   };
@@ -64,6 +76,15 @@ const CreateLinks = () => {
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
     toast.success("Link copied to clipboard!");
+  };
+
+  const handleDeleteLink = (id: string) => {
+    setGeneratedLinks(prev => prev.filter(link => link.id !== id));
+    toast.success("Link deleted successfully!");
+  };
+
+  const isLinkExpired = (expiresAt: Date) => {
+    return new Date() > new Date(expiresAt);
   };
 
   return (
@@ -107,6 +128,19 @@ const CreateLinks = () => {
                 />
               )}
 
+              <Select onValueChange={setExpirationDays} value={expirationDays}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select expiration time" />
+                </SelectTrigger>
+                <SelectContent>
+                  {EXPIRATION_OPTIONS.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
               <Button onClick={handleCreateLink} className="w-full">
                 Generate Link
               </Button>
@@ -117,12 +151,29 @@ const CreateLinks = () => {
             {generatedLinks.map((link) => (
               <div
                 key={link.id}
-                className="bg-white/50 backdrop-blur-sm rounded-lg border p-4 space-y-2"
+                className={`bg-white/50 backdrop-blur-sm rounded-lg border p-4 space-y-2 ${
+                  isLinkExpired(link.expiresAt) ? 'opacity-50' : ''
+                }`}
               >
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-500">
                     {format(link.createdAt, "MMM d, yyyy HH:mm")}
                   </span>
+                  <div className="flex items-center gap-2">
+                    <span className={`text-sm ${
+                      isLinkExpired(link.expiresAt) ? 'text-red-500' : 'text-gray-500'
+                    }`}>
+                      Expires: {format(link.expiresAt, "MMM d, yyyy")}
+                    </span>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                      onClick={() => handleDeleteLink(link.id)}
+                    >
+                      Delete
+                    </Button>
+                  </div>
                 </div>
                 <div className="space-y-1">
                   <p className="text-sm text-gray-600 font-mono break-all">
@@ -136,6 +187,7 @@ const CreateLinks = () => {
                       variant="outline"
                       size="sm"
                       onClick={() => copyToClipboard(link.shortUrl)}
+                      disabled={isLinkExpired(link.expiresAt)}
                     >
                       Copy
                     </Button>
