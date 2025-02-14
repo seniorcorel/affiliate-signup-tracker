@@ -89,7 +89,7 @@ const CreateLinks = () => {
                   <SelectValue placeholder="Select destination URL" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Custom URL</SelectItem>
+                  <SelectItem value="custom">Custom URL</SelectItem>
                   {PREDEFINED_URLS.map((url) => (
                     <SelectItem key={url.value} value={url.value}>
                       {url.label}
@@ -98,7 +98,7 @@ const CreateLinks = () => {
                 </SelectContent>
               </Select>
 
-              {!selectedPredefined && (
+              {selectedPredefined === "custom" && (
                 <Input
                   type="url"
                   placeholder="Enter custom destination URL"
