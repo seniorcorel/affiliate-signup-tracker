@@ -13,6 +13,7 @@ interface Affiliate {
   id: number;
   username: string;
   link: string;
+  shortUrl: string;
   signupDate: Date;
 }
 
@@ -28,6 +29,7 @@ export const AffiliateTable = ({ affiliates }: AffiliateTableProps) => {
           <TableRow>
             <TableHead className="w-[200px]">Username</TableHead>
             <TableHead>Affiliate Link</TableHead>
+            <TableHead>Short URL</TableHead>
             <TableHead className="text-right">Sign Up Date</TableHead>
           </TableRow>
         </TableHeader>
@@ -37,6 +39,11 @@ export const AffiliateTable = ({ affiliates }: AffiliateTableProps) => {
               <TableCell className="font-medium">{affiliate.username}</TableCell>
               <TableCell className="font-mono text-sm text-gray-600">
                 {affiliate.link}
+              </TableCell>
+              <TableCell className="font-mono text-sm text-blue-600 hover:text-blue-800">
+                <a href={affiliate.link} target="_blank" rel="noopener noreferrer">
+                  {affiliate.shortUrl}
+                </a>
               </TableCell>
               <TableCell className="text-right">
                 {format(new Date(affiliate.signupDate), "MMM d, yyyy")}

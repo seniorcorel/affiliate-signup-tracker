@@ -7,18 +7,21 @@ const sampleAffiliates = [
     id: 1,
     username: "john_doe",
     link: "affiliate.com/ref/john_doe",
+    shortUrl: "short.ly/abc123",
     signupDate: new Date("2024-03-01"),
   },
   {
     id: 2,
     username: "sarah_smith",
     link: "affiliate.com/ref/sarah_smith",
+    shortUrl: "short.ly/xyz789",
     signupDate: new Date("2024-03-05"),
   },
   {
     id: 3,
     username: "tech_master",
     link: "affiliate.com/ref/tech_master",
+    shortUrl: "short.ly/def456",
     signupDate: new Date("2024-03-10"),
   },
 ];
