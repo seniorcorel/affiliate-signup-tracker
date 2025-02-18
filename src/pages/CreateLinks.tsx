@@ -25,17 +25,13 @@ const PREDEFINED_URLS = [
   { label: "flinbo.com/register", value: "https://flinbo.com/register" },
 ];
 
-const EXPIRATION_OPTIONS = [
-  { label: "7 days", value: "7" },
-  { label: "30 days", value: "30" },
-  { label: "90 days", value: "90" },
-];
+// Fixed expiration time in days
+const LINK_EXPIRATION_DAYS = 30;
 
 const CreateLinks = () => {
   const [generatedLinks, setGeneratedLinks] = useState<GeneratedLink[]>([]);
   const [customUrl, setCustomUrl] = useState("");
   const [selectedPredefined, setSelectedPredefined] = useState("");
-  const [expirationDays, setExpirationDays] = useState("30");
 
   const generateShortUrl = () => {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -55,7 +51,7 @@ const CreateLinks = () => {
     }
 
     const createdAt = new Date();
-    const expiresAt = addDays(createdAt, parseInt(expirationDays));
+    const expiresAt = addDays(createdAt, LINK_EXPIRATION_DAYS);
 
     const newLink: GeneratedLink = {
       id: Math.random().toString(36).substr(2, 9),
@@ -127,19 +123,6 @@ const CreateLinks = () => {
                   onChange={(e) => setCustomUrl(e.target.value)}
                 />
               )}
-
-              <Select onValueChange={setExpirationDays} value={expirationDays}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select expiration time" />
-                </SelectTrigger>
-                <SelectContent>
-                  {EXPIRATION_OPTIONS.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
-                      {option.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
 
               <Button onClick={handleCreateLink} className="w-full">
                 Generate Link
