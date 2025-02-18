@@ -1,5 +1,8 @@
 
 import { AffiliateTable } from "@/components/AffiliateTable";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Home, Link2, BarChart } from "lucide-react";
 
 // Sample data - in a real app, this would come from an API
 const sampleAffiliates = [
@@ -40,6 +43,27 @@ const Index = () => {
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Track your affiliate program performance and monitor new customer signups in real-time.
           </p>
+        </div>
+
+        <div className="mt-8 flex justify-center gap-4 animate-fade-up">
+          <Button asChild variant="outline" className="group">
+            <Link to="/">
+              <Home className="mr-2 h-5 w-5 group-hover:text-blue-500" />
+              Dashboard
+            </Link>
+          </Button>
+          <Button asChild variant="outline" className="group">
+            <Link to="/create-links">
+              <Link2 className="mr-2 h-5 w-5 group-hover:text-blue-500" />
+              Create Links
+            </Link>
+          </Button>
+          <Button asChild variant="outline" className="group">
+            <Link to="/affiliate-earnings">
+              <BarChart className="mr-2 h-5 w-5 group-hover:text-blue-500" />
+              Earnings
+            </Link>
+          </Button>
         </div>
         
         <div className="mt-16">
