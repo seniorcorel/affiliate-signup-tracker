@@ -1,7 +1,7 @@
 import { AffiliateTable } from "@/components/AffiliateTable";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { UserPlus, Link2, BarChart, Home } from "lucide-react";
+import { UserPlus, Link2, BarChart, Home, LogOut } from "lucide-react";
 
 // Sample data - in a real app, this would come from an API
 const sampleAffiliates = [
@@ -68,6 +68,10 @@ const AffiliateSignups = () => {
               <BarChart className="mr-2 h-5 w-5 group-hover:text-blue-500" />
               Earnings
             </Link>
+          </Button>
+          <Button variant="outline" className="group text-red-500 hover:text-red-600">
+            <LogOut className="mr-2 h-5 w-5" />
+            Logout
           </Button>
         </div>
         
