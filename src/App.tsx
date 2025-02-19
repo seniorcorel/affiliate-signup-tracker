@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import CreateLinks from "./pages/CreateLinks";
 import AffiliateEarnings from "./pages/AffiliateEarnings";
+import AffiliateSignups from "./pages/AffiliateSignups";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -19,6 +20,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/affiliate-signups" element={<AffiliateSignups />} />
           <Route path="/create-links" element={<CreateLinks />} />
           <Route path="/affiliate-earnings" element={<AffiliateEarnings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
