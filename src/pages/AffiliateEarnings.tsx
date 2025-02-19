@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -31,6 +30,8 @@ import * as XLSX from "xlsx";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { toast } from "sonner";
+import { Link } from "react-router-dom";
+import { UserPlus, Link2, BarChart } from "lucide-react";
 
 // Sample data - in a real app, this would come from an API
 const sampleTransactions = [
@@ -241,6 +242,27 @@ const AffiliateEarnings = () => {
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Track your affiliate sales and earned commissions
           </p>
+        </div>
+
+        <div className="mt-8 flex justify-center gap-4 animate-fade-up">
+          <Button asChild variant="outline" className="group">
+            <Link to="/affiliate-signups">
+              <UserPlus className="mr-2 h-5 w-5 group-hover:text-blue-500" />
+              Affiliate Signups
+            </Link>
+          </Button>
+          <Button asChild variant="outline" className="group">
+            <Link to="/create-links">
+              <Link2 className="mr-2 h-5 w-5 group-hover:text-blue-500" />
+              Create Links
+            </Link>
+          </Button>
+          <Button asChild variant="outline" className="group">
+            <Link to="/affiliate-earnings">
+              <BarChart className="mr-2 h-5 w-5 group-hover:text-blue-500" />
+              Earnings
+            </Link>
+          </Button>
         </div>
 
         <div className="mt-8 grid gap-6 md:grid-cols-3">

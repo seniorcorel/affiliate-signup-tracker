@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,6 +10,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { format, addDays } from "date-fns";
+import { Link } from "react-router-dom";
+import { UserPlus, Link2, BarChart } from "lucide-react";
 
 interface GeneratedLink {
   id: string;
@@ -25,7 +26,6 @@ const PREDEFINED_URLS = [
   { label: "flinbo.com/register", value: "https://flinbo.com/register" },
 ];
 
-// Fixed expiration time in days
 const LINK_EXPIRATION_DAYS = 30;
 
 const CreateLinks = () => {
@@ -96,6 +96,27 @@ const CreateLinks = () => {
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Generate and manage your affiliate links easily.
           </p>
+        </div>
+
+        <div className="mt-8 flex justify-center gap-4 animate-fade-up">
+          <Button asChild variant="outline" className="group">
+            <Link to="/affiliate-signups">
+              <UserPlus className="mr-2 h-5 w-5 group-hover:text-blue-500" />
+              Affiliate Signups
+            </Link>
+          </Button>
+          <Button asChild variant="outline" className="group">
+            <Link to="/create-links">
+              <Link2 className="mr-2 h-5 w-5 group-hover:text-blue-500" />
+              Create Links
+            </Link>
+          </Button>
+          <Button asChild variant="outline" className="group">
+            <Link to="/affiliate-earnings">
+              <BarChart className="mr-2 h-5 w-5 group-hover:text-blue-500" />
+              Earnings
+            </Link>
+          </Button>
         </div>
 
         <div className="mt-12 max-w-2xl mx-auto space-y-8">

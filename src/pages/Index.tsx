@@ -1,12 +1,34 @@
 
 import { Link } from "react-router-dom";
 import { UserPlus, Link2, BarChart } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 flex items-center justify-center">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12 animate-fade-down">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+      <div className="container mx-auto px-4 py-16">
+        <div className="mt-8 flex justify-center gap-4 animate-fade-up">
+          <Button asChild variant="outline" className="group">
+            <Link to="/affiliate-signups">
+              <UserPlus className="mr-2 h-5 w-5 group-hover:text-blue-500" />
+              Affiliate Signups
+            </Link>
+          </Button>
+          <Button asChild variant="outline" className="group">
+            <Link to="/create-links">
+              <Link2 className="mr-2 h-5 w-5 group-hover:text-blue-500" />
+              Create Links
+            </Link>
+          </Button>
+          <Button asChild variant="outline" className="group">
+            <Link to="/affiliate-earnings">
+              <BarChart className="mr-2 h-5 w-5 group-hover:text-blue-500" />
+              Earnings
+            </Link>
+          </Button>
+        </div>
+
+        <div className="text-center mt-12 mb-12 animate-fade-down">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl mb-4">
             Affiliate Dashboard
           </h1>
