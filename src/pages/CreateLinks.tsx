@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { format, addDays } from "date-fns";
 import { Link } from "react-router-dom";
-import { UserPlus, Link2, BarChart } from "lucide-react";
+import { UserPlus, Link2, BarChart, Home } from "lucide-react";
 
 interface GeneratedLink {
   id: string;
@@ -99,6 +99,12 @@ const CreateLinks = () => {
         </div>
 
         <div className="mt-8 flex justify-center gap-4 animate-fade-up">
+          <Button asChild variant="outline" className="group">
+            <Link to="/">
+              <Home className="mr-2 h-5 w-5 group-hover:text-blue-500" />
+              Home
+            </Link>
+          </Button>
           <Button asChild variant="outline" className="group">
             <Link to="/affiliate-signups">
               <UserPlus className="mr-2 h-5 w-5 group-hover:text-blue-500" />

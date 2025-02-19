@@ -1,8 +1,7 @@
-
 import { AffiliateTable } from "@/components/AffiliateTable";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Home, Link2, BarChart } from "lucide-react";
+import { UserPlus, Link2, BarChart, Home } from "lucide-react";
 
 // Sample data - in a real app, this would come from an API
 const sampleAffiliates = [
@@ -49,7 +48,13 @@ const AffiliateSignups = () => {
           <Button asChild variant="outline" className="group">
             <Link to="/">
               <Home className="mr-2 h-5 w-5 group-hover:text-blue-500" />
-              Dashboard
+              Home
+            </Link>
+          </Button>
+          <Button asChild variant="outline" className="group">
+            <Link to="/affiliate-signups">
+              <UserPlus className="mr-2 h-5 w-5 group-hover:text-blue-500" />
+              Affiliate Signups
             </Link>
           </Button>
           <Button asChild variant="outline" className="group">

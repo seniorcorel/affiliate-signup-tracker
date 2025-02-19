@@ -31,9 +31,8 @@ import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
-import { UserPlus, Link2, BarChart } from "lucide-react";
+import { UserPlus, Link2, BarChart, Home } from "lucide-react";
 
-// Sample data - in a real app, this would come from an API
 const sampleTransactions = [
   {
     id: 1,
@@ -171,7 +170,6 @@ const AffiliateEarnings = () => {
     0
   );
 
-  // Prepare chart data
   const chartData = Array.from({ length: 30 }, (_, i) => {
     const date = subDays(new Date(), i);
     const dateStr = format(date, "MMM dd");
@@ -245,6 +243,12 @@ const AffiliateEarnings = () => {
         </div>
 
         <div className="mt-8 flex justify-center gap-4 animate-fade-up">
+          <Button asChild variant="outline" className="group">
+            <Link to="/">
+              <Home className="mr-2 h-5 w-5 group-hover:text-blue-500" />
+              Home
+            </Link>
+          </Button>
           <Button asChild variant="outline" className="group">
             <Link to="/affiliate-signups">
               <UserPlus className="mr-2 h-5 w-5 group-hover:text-blue-500" />
