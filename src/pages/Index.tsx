@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { UserPlus, Link2, BarChart } from "lucide-react";
+import { UserPlus, Link2, BarChart, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Index = () => {
@@ -25,6 +25,10 @@ const Index = () => {
               <BarChart className="mr-2 h-5 w-5 group-hover:text-blue-500" />
               Earnings
             </Link>
+          </Button>
+          <Button variant="outline" className="group text-red-500 hover:text-red-600">
+            <LogOut className="mr-2 h-5 w-5" />
+            Logout
           </Button>
         </div>
 
