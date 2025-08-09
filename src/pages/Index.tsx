@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import { UserPlus, Link2, BarChart, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import VersionInfo from "@/components/VersionInfo";
 
 const Index = () => {
   return (
@@ -80,6 +81,11 @@ const Index = () => {
               <p className="text-gray-600">View your earnings and commission reports</p>
             </div>
           </Link>
+        </div>
+
+        {/* Version Info Footer */}
+        <div className="fixed bottom-4 right-4">
+          <VersionInfo />
         </div>
       </div>
     </div>
